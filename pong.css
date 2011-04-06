@@ -1,0 +1,58 @@
+@font-face { font-family: Pixel; src: url('resources/slkscr.ttf'); } 
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: #070707;
+}
+#gamefield {
+	position: relative;
+	margin: 100px auto 0;
+    width: 600px;
+    height: 400px;
+    border: solid 10px rgba(0,255,0,0.2);
+}
+h1 {
+    color: #0f0;
+    font-family: Arial;
+    text-align: center;
+    text-transform: uppercase;
+	line-height: 0;
+}
+
+ul {
+	padding: 0;
+}
+li {
+	border: solid 5px #0f0;
+	text-align: center;
+	width: 250px;
+	margin: 10px auto 0;
+	padding: 10px;
+	color: #fff;
+	list-style-type: none;
+	font: 24px Pixel;
+}
+li.selected {
+	background-color: #f00;
+}
+#scores {
+	margin-top: -50px;
+	margin-bottom: 50px;
+	color: #fff;
+	font: 30px Pixel;
+}
+#scores > div {
+	float: left;
+	width: 250px;
+}
+#scores > div:last-child {
+	float: right;
+	text-align: right;
+}
+#scores > div:first-child span {
+	float: right;
+}
+#scores > div:last-child span {
+	float: left;
+}
