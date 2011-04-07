@@ -1,1 +1,4 @@
 Very simple pong game written in Javascript. Uses Three.js to render to the WebGL rendering context of the browser
+
+Example here (tested and developer for Chrome):
+http://www.rtuin.nl/rtuin/files/pong/
