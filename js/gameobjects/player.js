@@ -11,6 +11,10 @@ function Player(name, startX, startY) {
 	
 	this.position = { x: startX, y: startY };
 	this.score = 0;
+	
+	this.upPressed = false;
+	this.downPressed = false;
+	
 }
 
 Player.prototype.hitTest = function(ball, isHitCallback) {
@@ -25,17 +29,13 @@ Player.prototype.hitTest = function(ball, isHitCallback) {
 	}
 }
 
-Player.prototype.handleKeyCode = function(keyCode) {
+Player.prototype.handleKeyCode = function(keyCode, pressed) {
 	switch (keyCode) {
 		case 38:
-			if ((this.position.y + this.height/2) + this.speed < field.height/2) {
-				this.position.y += this.speed;
-			}
+			this.upPressed = pressed;
 		break;
 		case 40:
-			if ((this.position.y - this.height/2) - this.speed > -field.height/2) {
-				this.position.y -= this.speed;
-			}
+			this.downPressed = pressed;
 		break;
 	}
 }

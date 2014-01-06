@@ -22,7 +22,13 @@ function Game (container) {
 Game.prototype.prepareEvents = function() {
 	document.addEventListener('keydown', (function(data) {
 		for (playerIndex in this.players) {
-			this.players[playerIndex].handleKeyCode(data.keyCode);
+			this.players[playerIndex].handleKeyCode(data.keyCode, true);
+		}
+	}).bind(this));
+	
+	document.addEventListener('keyup', (function(data) {
+		for (playerIndex in this.players) {
+			this.players[playerIndex].handleKeyCode(data.keyCode, false);
 		}
 	}).bind(this));
 }
@@ -103,6 +109,21 @@ Game.prototype.updateScene = function() {
 	// Set the player's positions
 	for (playerIndex in this.players) {
 		var player = this.players[playerIndex];
+		
+		//Move the player object
+		
+		if (player.upPressed) {
+			if ((player.position.y + player.height/2) + player.speed < field.height/2) {
+				player.position.y += player.speed;
+			}
+		}
+		
+		if (player.downPressed) {
+			if ((player.position.y - player.height/2) - player.speed > -field.height/2) {
+				player.position.y -= player.speed;
+			}
+		}
+		
 		var playerMesh = this.playerMeshes[playerIndex];
 		playerMesh.position.y = player.position.y;
 	}
@@ -118,11 +139,14 @@ Game.prototype.moveComputerPlayer = function() {
 	if (this.balls.length == 0) {
 		return;
 	}
+	//This needs some tweaking.
 	if (this.players[1].position.y > this.balls[0].position.y) {
-		player.handleKeyCode(40);
+		player.handleKeyCode(40, 1);
+		player.handleKeyCode(38, 0);
 	} 
 	else {
-		player.handleKeyCode(38);
+		player.handleKeyCode(38, 1);
+		player.handleKeyCode(40, 0);
 	}
 }
 
